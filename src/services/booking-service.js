@@ -25,7 +25,7 @@ class BookingService {
             const booking = await this.bookingRepository.create(bookingPayload);
 
             const updateFlightRequestURL = `${FLIFHT_SERVICE_PATH}/api/v1/flights/${booking.flightId}`;
-            await axios.patch(updateFlightRequestURL,{totalSeats:flightData.totalSeat-booking.noOfseats});
+            await axios.patch(updateFlightRequestURL,{totalSeat:flightData.totalSeat-booking.noOfseats});
             const finalBooking = this.bookingRepository.update(booking.id,{status:'Booked'});
 
             return finalBooking;
